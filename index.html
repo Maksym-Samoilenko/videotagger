@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>HTML5 Video Player</title>
+
+        <!-- google font -->
+        <link href='http://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+
+        <!-- VideoJS -->
+        <link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet">
+        <script src="http://vjs.zencdn.net/c/video.js"></script>
+
+        <!-- BubblesJS -->
+        <link href="http://bubbles.childnodes.com/css/bubbles.css" rel="stylesheet" />
+        <script type="text/javascript" src="http://bubbles.childnodes.com/js/bubbles.js"></script>
+
+        <!-- jquery -->
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+        <!-- extra inline css-->
+        <style>
+            #wrap .slidingBox {
+                position:absolute;
+                opacity: 1;
+                border: 0;
+                left: 0;
+                width: 100%;
+                padding: 0;
+                border-radius: 0;
+                background:rgba(0,0,0,0.6);
+                box-shadow: none;
+                color:white;
+                -webkit-transition:none;
+                -ms-transition:none;
+                -o-transition:none;
+                -moz-transition:none;
+            }
+
+            #wrap .slidingBox span {
+                display:block;
+                text-align:center;
+                padding-top:4px;
+                color:white;
+                font-size:13px;
+            }
+
+            body{ font-family:'Poiret One'; }
+        </style>
+
+    </head>
+    <body>
+
+        <!-- video & markup -->
+        <div id="wrap">
+            <video width="1200" height="800" id="video-example" class="video-js vjs-default-skin" controls data-setup="{}" preload="auto">
+                <source src="http://n21.filecdn.to/ff/OWY4Zjk1OThmNjhhM2YyZGQ4OTFmYmQ2NmU0MDBjMTB8ZnN0b3wyOTU1MjA3NzE5fDEwMDAwfDJ8MHwwfDIxfDQ5NTQ3ZmM3MWUzYjI3NmEwNDg1ZTE2MjhmYmI0N2JmfDB8Njo2fDB8MTg1OTE2MTAxM3wxNDMyNDcyNTE3LjU4Ng,,/play_64z2yg0l09cxxy3x2fdi1o0ae.0.4278037390.2350675441.1432306866.mp4" type="video/mp4" />
+            </video>
+        </div>
+        <script type="text/javascript">
+
+    function submitMomentum(){
+            var myPlayer = _V_("video-example");
+            console.log('submitting momentum');
+            var tag = {content: $('#momentum').val(), start: myPlayer.currentTime() - 5, end: myPlayer.currentTime()};
+        $.ajax({
+  url: "/submitMomentum",
+  dataType: 'json',
+  type: 'GET',
+  data: { 'moment' : JSON.stringify(tag)}
+}).done(function( data ) {
+alert(data);
+});
+    }
+
+
+        </script>
+
+        <script type="text/javascript">
+            // waiting for videoJS to be ready
+            _V_("video-example").ready(function () {
+                var bubbles;
+                var filmsBubbles = '{';
+                $.ajax({
+  url: "/allBubbles",
+  dataType: 'json',
+  type: 'GET'
+}).done(function( data ) {
+console.log(JSON.stringify(data));
+bubbles = data;
+$.each(bubbles,function(index,val){
+    if(index !== 0 ){
+        filmsBubbles += ',';
+    }
+console.log(index);
+console.log(val);
+filmsBubbles += '"' + index + '"' + ':' + '{ "type": "content", "effect": "slide","className": "bubbles2","content": "<span>' + val.content +'</span>",    "dimensions": ["30%","30%"],"position": ["200px", "240px"], "config" : [' + val.start + ',' + val.end +'] }';
+})
+filmsBubbles += '}';
+console.log(filmsBubbles);
+                var captionsDemo = new Bubbles.videoJS('video-example', 'bubblesContainer', JSON.parse(filmsBubbles));
+});
+
+//est02": {
+//  type: "content",
+//  effect: "slide",
+//  className: "bubbles2",
+//  content: "<span> Hello World. And I am a sliding Box </span>",
+//  dimensions: ['110px', '17%'],
+//  position: ['100px', '200px'],
+//  config: [5, 8, 11, 15]
+//
+//est03": {
+//  type: "content",
+//  effect: "fade",
+//  className: "bubbles2",
+//  content: "<span> Hello World! <br /> I am a Caption Box </span>",
+//  dimensions: ['150px', '12%'],
+//  position: ['200px', '240px'],
+//  config: [2, 8]
+//
+//est04": {
+//  type: "content",
+//  effect: "fade",
+//  className: "bubbles2",
+//  content: "<span> THE BACKGROUND IS NOW BLACK </span>",
+//  dimensions: ['110px', '20%'],
+//  position: ['190px', '50px'],
+//  config: [5, 10, 40, 50],
+//  callback: function () {
+//      document.getElementsByTagName('body')[0].style.backgroundColor = "#000000";
+//  },
+//  callbackEnd: function () {
+//      document.getElementsByTagName('body')[0].style.backgroundColor = "#F0EFF5";
+//  }
+
+//
+//est06": {
+//  type: "content",
+//  effect: "fade",
+//  className: "bubblesBlack",
+//  content: "<span> Lorem ipsum dolor sit amet, consectetur adipiscing elit. </span>",
+//  dimensions: ['130px', '74px'],
+//  position: ['100px', '450px'],
+//  config: [0.3, 4, 22, 30]
+//
+//est07": {
+//  type: "content",
+//  effect: ["fade", "slide"],
+//  className: "bubblesPink",
+//  content: "<span> Lorem ipsum dolor sit amet, consectetur adipiscing elit. </span>",
+//  dimensions: ['160px', '16%'],
+//  position: ['170px', '90px'],
+//  config: [6, 9, 16, 24, 35]
+//
+//est08": {
+//  type: "content",
+//  effect: "slide",
+//  className: "bubbles2",
+//  content: "<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem.</span>",
+//  dimensions: ['210px', '90px'],
+//  position: ['10px', '20px'],
+//  config: [2, 5]
+//
+//est09": {
+//  type: "content",
+//  effect: "fade",
+//  className: "bubblesEmpty",
+//  content: "<img src='vid/david.gif' />",
+//  dimensions: ['62px', '52px'],
+//  position: ['40%', '40%'],
+//  config: [0.22, 35]
+//
+//est10": {
+//  type: "content",
+//  effect: "slide",
+//  className: "bubbles2",
+//  content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+//  dimensions: ['205px', '52px'],
+//  position: ['60px', '350px'],
+//  config: [0.4, 4.1, 7, 11]
+//
+            });
+
+            // adding a custom show/hide animation (with jquery)
+            Bubbles.effects['slide_jquery'] = function (object, data, mode) {
+                if (mode)
+                    $(object).css({'margin-top': 0, 'opacity': 0}).show().animate({'margin-top': 30, 'opacity': 1}, 600);
+                else
+                    $(object).animate({'margin-top': 0, 'opacity': 0}, 600, function () {
+                        $(this).hide();
+                    });
+            }
+        </script>
+
+    </body>
+</html>
