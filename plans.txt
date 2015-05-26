@@ -1,0 +1,31 @@
+Implemented
+
+0.Create a simple prototype with Bubble.js (based on Video.js), formating and other refactoring aren't important.
+1.Deep into node.js.
+2.Test mongodb (mongolab api).
+3.Test mongodb driver locally.
+4.Deploy nodejs on heroku cloud platform (even base prototype).
+
+
+In progress
+0. CRUD for moments(moments is an sticky messages on video canvas(or on video pane)).
+
+
+
+Will be implemented
+0. CRUD for videos.
+1.Switch to canjs approach(need to investigate).
+2.Add google authorization form.
+	2.1 Of course, all CRUD action will be performed by user -> CRUD actions can be performed only by user, who create it.
+	2.2 Logging of CRUD actions.
+3.Add pagination approach(for moments and for video also).
+4.Add search for video (fulltext is prefered).
+5.Investigate, is there a way to enable subtitling ( adding *.srt format titles).
+6. Apply bootstrap 
+
+Nearest Future
+
+1.Deploy application via VPS(for example, Apache can be used as a server).
+2.Use synonimical full text search(if user  looks for "target" , system will find aim, goal, destination)
+3.Use multilingual full text search.
+4.Investigate one - two words tags to describe some emotion
