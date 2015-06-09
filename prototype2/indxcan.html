@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en" data-framework="canjs">
+  <head>
+    <meta charset="utf-8">
+    <title>CanJS</title>
+    <!-- google font -->
+        <link href='http://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+
+
+        <!-- VideoJS -->
+        <link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet">
+<script src="../js/video.js"></script>
+
+
+        <!-- BubblesJS -->
+        <link href="http://bubbles.childnodes.com/css/bubbles.css" rel="stylesheet" />
+        <script type="text/javascript" src="http://bubbles.childnodes.com/js/bubbles.js"></script>
+
+        <!-- jquery -->
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+        <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">  
+
+    <style>
+      .vjs-control.vjs-tagger-button:before {
+        font-family: FontAwesome;
+        content: "\f02c";
+        width: 5em;
+        cursor: pointer
+      }
+      </style>
+        <!-- extra inline css-->
+        <style>
+            #wrap .slidingBox {
+                position:absolute;
+                opacity: 1;
+                border: 0;
+                left: 0;
+                width: 100%;
+                padding: 0;
+                border-radius: 0;
+                background:rgba(0,0,0,0.6);
+                box-shadow: none;
+                color:white;
+                -webkit-transition:none;
+                -ms-transition:none;
+                -o-transition:none;
+                -moz-transition:none;
+            }
+
+            #wrap .slidingBox span {
+                display:block;
+                text-align:center;
+                padding-top:4px;
+                color:white;
+                font-size:13px;
+            }
+
+            body{ font-family:'Poiret One'; }
+        </style>
+        <script type="text/javascript" >
+
+         </script>
+</head>
+  <body>
+<!-- CanJS needs a place to put your application -->
+<div id="my-app"></div>
+
+<link href="../css/master.css" rel="stylesheet" type="text/css">
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="http://canjs.com/release/2.0.4/can.jquery.js"></script>
+<script src="../js/canjs.js"></script>
+
+<div id="wrap"></div>
+</body>
